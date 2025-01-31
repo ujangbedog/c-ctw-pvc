@@ -10,10 +10,13 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
+  if (token && req.nextUrl.pathname === "/login") {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
   return NextResponse.next();
 }
 
-// Konfigurasi matcher untuk middleware
 export const config = {
-  matcher: ["/dashboard", "/"], // Hanya terapkan middleware pada rute tertentu
+  matcher: ["/dashboard", "/", "/login"],
 };

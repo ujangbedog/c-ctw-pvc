@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { signIn } from "next-auth/react";
-import OTPInput from "@/components/OTPInput"; // Komponen terpisah untuk input OTP
+import OTPInput from "@/components/OTPInput";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -13,7 +13,6 @@ export default function LoginPage() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [shake, setShake] = useState(false);
 
-  // Handle OTP verification
   const handleSubmit = async () => {
     setIsVerifying(true);
 
@@ -37,7 +36,6 @@ export default function LoginPage() {
     }
   };
 
-  // Auto-submit when code length is 6
   useEffect(() => {
     if (code.length === 6) {
       handleSubmit();
